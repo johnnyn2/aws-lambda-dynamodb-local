@@ -118,3 +118,63 @@ aws cloudformation delete-stack --stack-name node-sam-sample
 See the [AWS SAM developer guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html) for an introduction to SAM specification, the SAM CLI, and serverless application concepts.
 
 Next, you can use AWS Serverless Application Repository to deploy ready to use Apps that go beyond hello world samples and learn how authors developed their applications: [AWS Serverless Application Repository main page](https://aws.amazon.com/serverless/serverlessrepo/)
+
+## Setup DynamoDB in local environment. Need to set the lambda and dynamo db to use the same network in Docker
+
+```bash
+cd dynamodb
+docker-compose up -d dynamo
+aws dynamodb create-table --cli-input-json file://C:/Users/johnnyho/Documents/sam/node-sam-sample/config/tables/message.json --endpoint-url http://localhost:8000
+cd ..
+sam build --use-container
+sam local start-api --docker-network local-dynamodb --skip-pull-image --profile default --parameter-overrides 'ParameterKey=StageName,ParameterValue=local'
+```
+
+## References
+
+1. Initialization template
+<br/>https://docs.gitlab.com/ee/user/project/clusters/serverless/aws.html#aws-serverless-application-model
+
+2. DynamoDb local (Downloadable version and Docker version)
+<br/>https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html
+
+3. Connect local dynamodb and lambda
+<br/>https://dev.to/ara225/how-to-run-aws-dynamodb-locally-156i
+
+## Useful commands
+## AWS dynamodb
+
+### List table
+
+<code>aws dynamodb list-tables --endpoint-url http://localhost:8000</code>
+
+
+### Create table
+
+<code>aws dynamodb create-table --cli-input-json file://C:/Users/johnnyho/Documents/sam/node-sam-sample/config/tables/message.json --endpoint-url http://localhost:8000</code>
+
+
+### Put item
+
+<code>aws dynamodb put-item --table-name Message --item "{\"id\": {\"N\":\"0\"}, \"message\": {\"S\":\"hello world\"}}" --return-consumed-capacity TOTAL --endpoint-url http://localhost:8000</code>
+
+
+### Scan table
+
+<code>aws dynamodb scan --table-name "Message" --endpoint-url http://localhost:8000</code>
+
+
+## SAM
+
+### Build lambda functions
+
+<code>sam build --use-container</code>
+
+
+### Start local api testing
+
+<code>sam local start-api --docker-network local-dynamodb --skip-pull-image --profile default --parameter-overrides 'ParameterKey=StageName,ParameterValue=local'</code>
+
+### Test specific lambda function (pass event.json as event parameter to the lambda function)
+
+<code>sam local invoke HelloWorldFunction -e events/event.json</code>
