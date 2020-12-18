@@ -132,14 +132,28 @@ sam local start-api --docker-network local-dynamodb --skip-pull-image --profile 
 
 ## References
 
-1. Initialization template
-<br/>https://docs.gitlab.com/ee/user/project/clusters/serverless/aws.html#aws-serverless-application-model
+1. Complete Example
+<br>https://github.com/aws-samples/lambda-refarch-webapp
 
-2. DynamoDb local (Downloadable version and Docker version)
+2. Initialization template
+<br/>https://docs.gitlab.com/ee/user/project/clusters/serverless/aws.html#aws-serverless-application-model
+<br/>Template language options:
+<br/>https://github.com/aws/aws-sam-cli-app-templates
+
+3. DynamoDb local (Downloadable version and Docker version)
 <br/>https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html
 
-3. Connect local dynamodb and lambda
+4. Connect local dynamodb and lambda
 <br/>https://dev.to/ara225/how-to-run-aws-dynamodb-locally-156i
+
+5. Use DocumentClient to manage Dynamodb operations
+<br/>https://github.com/dabit3/dynamodb-documentclient-cheat-sheet
+
+6. Execute the code using node, before deploying the lambda function
+<br/>https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/dynamodb-example-document-client.html
+
+7. AWS SAM CLI command reference
+<br/>https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-command-reference.html
 
 ## Useful commands
 ## AWS dynamodb
