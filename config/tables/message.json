@@ -1,0 +1,15 @@
+{
+    "TableName": "Message",
+    "KeySchema": [
+      { "AttributeName": "id", "KeyType": "HASH" },
+      { "AttributeName": "message", "KeyType": "STRING"}
+    ],
+    "AttributeDefinitions": [
+      { "AttributeName": "id", "AttributeType": "N" },
+      { "AttributeName": "message", "AttributeType": "S" }
+    ],
+    "ProvisionedThroughput": {
+      "ReadCapacityUnits": 3,
+      "WriteCapacityUnits": 3
+    }
+}
