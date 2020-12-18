@@ -155,6 +155,9 @@ sam local start-api --docker-network local-dynamodb --skip-pull-image --profile 
 7. AWS SAM CLI command reference
 <br/>https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-command-reference.html
 
+8. You can find docker volume in the following windows directory
+<br/>\\wsl$\docker-desktop-data\version-pack-data\community\docker\volumes\
+
 ## Useful commands
 ## AWS dynamodb
 
